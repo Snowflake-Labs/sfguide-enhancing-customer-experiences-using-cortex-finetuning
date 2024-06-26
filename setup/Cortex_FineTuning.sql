@@ -17,8 +17,7 @@ Date(yyyy-mm-dd)    Author              Comments
 ------------------- ------------------- ------------------------------------------------------------
 2024-06-12          Kala Govindarajan      Initial Release
 ***************************************************************************************************/
-Welcome to the Tasty Bytes Enhancing Customer Experiences using Cortex FineTuning
-  
+
 --STEP 1 Setup Database, Schema, role, warehouse and tables
 
 USE ROLE SYSADMIN;
@@ -65,22 +64,11 @@ USE SCHEMA CFT_SCHEMA;
 
 CREATE OR REPLACE STAGE DATA_s3
 COMMENT = 'CFT S3 Stage Connection'
-url = 's3://kg-data-app-demo/CFT/';
+url = 's3://sfquickstarts/frostbyte_tastybytes/fine_tuning/';
 
-CREATE OR REPLACE STAGE DATA ENCRYPTION = ( TYPE = 'SNOWFLAKE_SSE')
-COMMENT = 'CFT INTERNAL Stage Connection';
+--The Support emails and the various fields are added as a CSV. List and view the files in the Public S3 Bucket. 
 
-
-
-
-USE ROLE CFT_ROLE;
-USE WAREHOUSE CFT_WH;
-USE DATABASE CFT_DB;
-USE SCHEMA CFT_SCHEMA;
-
-
-
-LIST @CFT_DB.CFT_SCHEMA.DATA;
+LIST @CFT_DB.CFT_SCHEMA.DATA_s3;
 
 --Support_Email table creation
 CREATE OR REPLACE TABLE SUPPORT_EMAILS (        
@@ -97,11 +85,11 @@ CREATE OR REPLACE TABLE SUPPORT_EMAILS (
 
 -- Load data from stage into table 
 COPY INTO SUPPORT_EMAILS
-FROM @CFT_DB.CFT_SCHEMA.DATA/CFT_QUICKSTART.csv
+FROM @CFT_DB.CFT_SCHEMA.DATA_s3/CFT_QUICKSTART.csv
 FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1);
 
-
-SELECT * FROM SUPPORT_EMAILS;
+--Preview the data
+SELECT * FROM SUPPORT_EMAILS limit 2;
 
 -- STEP 2:Data Preparation : Creation of Training and Validation Dataset 
 
