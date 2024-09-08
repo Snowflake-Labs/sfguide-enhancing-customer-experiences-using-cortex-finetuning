@@ -9,6 +9,6 @@ With Cortex Fine-Tuning, Snowflake users can harness the power of parameter-effi
 
 In this tutorial, we will build a customer support agent that showcases the power of Cortex Fine-Tuning and helps the Tasty Bytes team to respond with a highly accurate automated email to customer tickets, all with minimal resources and time. Fine-tuning has significantly advanced the Tasty Bytes team’s ability to meet the key objective which is nothing but enhancing customer experiences.
 
-Step-By-Step Guide
+## Step-By-Step Guide
 For prerequisites, environment setup, step-by-step guide and instructions, please refer to the [QuickStart Guide](https://quickstarts.snowflake.com/guide/Enhancing_Customer_Experiences_using_Cortex_FineTuning/index.html?index=..%2F..index#0)
 
